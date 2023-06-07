@@ -8,10 +8,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-cmrk06z4yjyuse3qc^@5u(a29ts7ym8+!@72wn+zlgu16s8*&&"
 
@@ -20,9 +16,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -30,14 +24,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",  # - from Allauth web
-    "allauth",
+    "django.contrib.sites",  # -- added
+    "allauth",  # -- next 3 lines copied from Allauth website
     "allauth.account",
-    "allauth.socialaccount",  # - to this line
-    # "crispy_forms",
+    "allauth.socialaccount",  # -- social login, to this line
+    "crispy_forms",
     # "storages",
-    # "home",
-    # "product",
+    "home",
+    "product",
 ]
 
 MIDDLEWARE = [
@@ -52,10 +46,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "BoutiqueAmaranthus.urls"
 
+# Set template for crispy form
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+# Default
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ["templates", "allauth"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -63,21 +61,37 @@ TEMPLATES = [
                 "django.template.context_processors.request",  # http request
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+            ],  # below 2 lines added for crispy template
+            "builtins": [
+                "crispy_forms.templatetags.crispy_forms_tags",
+                "crispy_forms.templatetags.crispy_forms_field",
             ],
         },
     },
 ]
 
-# From Allauth web
+# Set from Allauth web
 # line 1 - allow login by username in Django Admin, not handled by `allauth`
-# line 2 - allow login by e-mail handled by `allauth`
+# line 2 - allow login by e-mail by `allauth`, with Email backend below
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
-# From Allauth web
+# Set site_id for Admin dash
 SITE_ID = 1
+
+# Set temporary send email to new user, confirm link at terminal
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# Set other Allauth config, allow login by both username & email
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = "/auth/login/"
+LOGIN_REDIRECT_URL = "/login-success"
 
 # Default
 WSGI_APPLICATION = "BoutiqueAmaranthus.wsgi.application"
@@ -89,7 +103,6 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -109,7 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -123,14 +135,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = ["BoutiqueAmaranthus/static"]
-# STATICFILES_DIRS = os.path.join(BASE_DIR, "static")
+# STATIC_ROOT = BASE_DIR / "static" --# Not applicable
 
 # Media files (Images)
 MEDIA_URL = "/media/"

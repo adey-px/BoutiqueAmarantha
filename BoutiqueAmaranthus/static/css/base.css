@@ -1,0 +1,104 @@
+body {
+  font-family: 'Lato';
+}
+
+/* main header */
+/* from bulma css, font-awesome consistent size */
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-font {
+  text-transform: uppercase;
+}
+
+.main-logo-link {
+  width: fit-content;
+}
+
+/* landing page */
+.background {
+  position: fixed;
+  background: url('./../img/background.jpg') center/cover;
+}
+
+.shop-now-button {
+  color: white;
+  min-width: 260px;
+  background: black;
+}
+
+.btn-black {
+  color: white;
+  background: black;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+  color: white;
+  background: #222;
+}
+
+.text-black {
+  color: #000 !important;
+}
+
+.border-black {
+  border: 1px solid black !important;
+}
+
+.bg-black {
+  background: #000 !important;
+}
+
+/* all products page */
+/* .overlay {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: #fff;
+  z-index: -1;
+} */
+
+/* slightly larger container on xl screen */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+/* fixed top navbar only on medium screen up */
+@media (min-width: 992px) {
+  .fixed-top-desktop-only {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+  }
+
+  .header-container {
+    padding-top: 164px;
+  }
+}
+
+/* push down from top on mobile */
+@media (max-width: 991px) {
+  body {
+    height: calc(100vh - 116px);
+  }
+
+  .header-container {
+    padding-top: 116px;
+  }
+}

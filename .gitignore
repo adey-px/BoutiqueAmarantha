@@ -1,4 +1,5 @@
 .venv/
 .venv
+media
 *.sqlite3
 zeenote.md
