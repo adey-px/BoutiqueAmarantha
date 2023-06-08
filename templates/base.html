@@ -37,9 +37,7 @@
     {% endblock extra_js %}
 
     <title>
-      Eleganza Boutique
-      {% block extra_title %}
-      {% endblock extra_title %}
+      Boutique - {% block extra_title %} {% endblock extra_title %}
     </title>
   </head>
 
@@ -79,15 +77,14 @@
               </a>
               <div class='dropdown-menu border-0' aria-labelledby='user-options'>
                 {% if request.user.is_authenticated %}
-                {% if request.user.is_superuser %}
-                <a href="" class='dropdown-item'>Manage Products</a>
+                  {% if request.user.is_superuser %}
+                  <a href="" class='dropdown-item'>Manage Products</a>
                 {% endif %}
-                <a href="" class='dropdown-item'>My Profile</a>
-                <a href="{% url 'account_logout' %}" class='dropdown-item'>Logout</a>
+                  <a href="" class='dropdown-item'>My Profile</a>
+                  <a href="{% url 'account_logout' %}" class='dropdown-item'>Logout</a>
                 {% else %}
-                <a href="{% url 'account_signup' %}" class='dropdown-item'>Register</a>
-
-                <a href="{% url 'account_login' %}" class='dropdown-item'>Login</a>
+                  <a href="{% url 'account_signup' %}" class='dropdown-item'>Register</a>
+                  <a href="{% url 'account_login' %}" class='dropdown-item'>Login</a>
                 {% endif %}
               </div>
             </li>
@@ -99,9 +96,9 @@
                   <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                   <p class="my-0">
                     {% if grand_total %}
-                    ${{ grand_total | floatformat:2 }}
+                      ${{ grand_total | floatformat:2 }}
                     {% else %}
-                    $0.00
+                      $0.00
                     {% endif %}
                   </p>
                 </div>
@@ -134,7 +131,7 @@
 
     <!-- django messages display -->
     {% if messages %}
-    <div class="message-container"></div>
+      <div class="message-container"></div>
     {% endif %}
 
     <!-- extra header for page -->

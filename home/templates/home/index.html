@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block extra_header %}
   <div class="container header-container">
     <div class="row">
@@ -10,6 +9,9 @@
   </div>
 {% endblock extra_header %}
 
+{% block extra_title %} 
+  Home
+{% endblock extra_title %}
 
 {% block body_content %}
   <div class="container-fluid background h-100">
@@ -21,7 +23,7 @@
         </h1>
         <div class="my-5">
           <h4 class="text-right">
-            <a href="" 
+            <a href="{% url 'aLLproducts' %}" 
               class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">
               Shop Now
             </a> 
