@@ -44,7 +44,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "BoutiqueAmaranthus.urls"
+ROOT_URLCONF = "BoutiqueAmarantha.urls"
 
 # Set template for crispy form
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -94,7 +94,7 @@ LOGIN_URL = "/auth/login/"
 LOGIN_REDIRECT_URL = "/login-success"
 
 # Default
-WSGI_APPLICATION = "BoutiqueAmaranthus.wsgi.application"
+WSGI_APPLICATION = "BoutiqueAmarantha.wsgi.application"
 
 # Database config
 DATABASES = {
@@ -139,7 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = ["BoutiqueAmaranthus/static"]
+STATICFILES_DIRS = ["BoutiqueAmarantha/static"]
 # STATIC_ROOT = BASE_DIR / "static" --# Not applicable
 
 # Media files (Images)
