@@ -3,7 +3,7 @@
     "pk": 1,
     "model": "product.category",
     "fields": {
-      "name": "active-wear",
+      "name": "activewears",
       "label": "Activewear"
     }
   },
@@ -11,24 +11,24 @@
     "pk": 2,
     "model": "product.category",
     "fields": {
-      "name": "bed-bath",
-      "label": "Bed & Bath"
+      "name": "baths_beddings",
+      "label": "Bath & Bedding"
     }
   },
   {
     "pk": 3,
     "model": "product.category",
     "fields": {
-      "name": "clearance",
-      "label": "Clearance"
+      "name": "clearance_sales",
+      "label": "Clearance Sale"
     }
   },
   {
     "pk": 4,
     "model": "product.category",
     "fields": {
-      "name": "deals",
-      "label": "Deals"
+      "name": "hottest_deals",
+      "label": "Hottest Deal"
     }
   },
   {
@@ -36,22 +36,22 @@
     "model": "product.category",
     "fields": {
       "name": "essentials",
-      "label": "Essentials"
+      "label": "Essential"
     }
   },
   {
     "pk": 6,
     "model": "product.category",
     "fields": {
-      "name": "jeans",
-      "label": "Jeans"
+      "name": "fitted_jeans",
+      "label": "Fitted Jean"
     }
   },
   {
     "pk": 7,
     "model": "product.category",
     "fields": {
-      "name": "kitchen-dining",
+      "name": "kitchen_dining",
       "label": "Kitchen & Dining"
     }
   },
@@ -59,16 +59,16 @@
     "pk": 8,
     "model": "product.category",
     "fields": {
-      "name": "new-arrivals",
-      "label": "New Arrivals"
+      "name": "newest_arrivals",
+      "label": "Newest Arrivals"
     }
   },
   {
     "pk": 9,
     "model": "product.category",
     "fields": {
-      "name": "shirts",
-      "label": "Shirts"
+      "name": "designer_shirts",
+      "label": "Designer Shirts"
     }
   }
 ]

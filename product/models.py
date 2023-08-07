@@ -1,13 +1,8 @@
 from django.db import models
 
 
-# Category model
+# Category model, meta fixes spelling in admin
 class Category(models.Model):
-    """
-    Category model based on category.json file.
-    """
-
-    # fix spelling issue in admin
     class Meta:
         verbose_name_plural = "Categories"
 
@@ -23,12 +18,8 @@ class Category(models.Model):
         return self.label
 
 
-# Product model
+# Product model with required fields
 class Product(models.Model):
-    """
-    Product model with relevant fields
-    """
-
     category = models.ForeignKey(
         "Category", null=True, blank=True, on_delete=models.SET_NULL
     )
