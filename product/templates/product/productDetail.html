@@ -42,6 +42,14 @@
           <p class="lead mb-0 text-left font-weight-bold">
             ${{ product.price }}
           </p>
+          {% if product.category %}
+            <p class="small mt-1 mb-0">
+              <a href="{% url 'aLLproducts' %}?category={{ product.category.name }}" class="text-muted">
+                <i class="fas fa-tag mr-1"></i>
+                {{product.category.label}}
+              </a>
+            </p>
+          {% endif %}
           {% if product.rating %}
           <small class="text-muted">
             <i class="fas fa-star mr-1"></i>

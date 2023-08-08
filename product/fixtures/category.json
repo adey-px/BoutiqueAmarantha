@@ -4,14 +4,14 @@
     "model": "product.category",
     "fields": {
       "name": "activewears",
-      "label": "Activewear"
+      "label": "Activewears"
     }
   },
   {
     "pk": 2,
     "model": "product.category",
     "fields": {
-      "name": "baths_beddings",
+      "name": "bath_bedding",
       "label": "Bath & Bedding"
     }
   },
@@ -20,7 +20,7 @@
     "model": "product.category",
     "fields": {
       "name": "clearance_sales",
-      "label": "Clearance Sale"
+      "label": "Clearance Sales"
     }
   },
   {
@@ -28,7 +28,7 @@
     "model": "product.category",
     "fields": {
       "name": "hottest_deals",
-      "label": "Hottest Deal"
+      "label": "Hottest Deals"
     }
   },
   {
@@ -36,15 +36,15 @@
     "model": "product.category",
     "fields": {
       "name": "essentials",
-      "label": "Essential"
+      "label": "Essentials"
     }
   },
   {
     "pk": 6,
     "model": "product.category",
     "fields": {
-      "name": "fitted_jeans",
-      "label": "Fitted Jean"
+      "name": "fashion_jeans",
+      "label": "Fashion Jeans"
     }
   },
   {
@@ -67,8 +67,8 @@
     "pk": 9,
     "model": "product.category",
     "fields": {
-      "name": "designer_shirts",
-      "label": "Designer Shirts"
+      "name": "fitted_shirts",
+      "label": "Fitted Shirts"
     }
   }
 ]
