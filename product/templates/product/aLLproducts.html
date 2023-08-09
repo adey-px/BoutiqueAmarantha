@@ -28,7 +28,7 @@
           {% endfor %} -->
 
         <!-- show buttons for filtered categories -->
-        {% for category in filterCat %}
+        {% for category in filterCats %}
           <a href="{% url 'aLLproducts' %}?category={{ category.name }}" class="category-badge text-decoration-none">
             <span class="p-2 mt-2 badge badge-white text-black rounded-1 border border-dark">
               {{ category.label }}</span>
@@ -41,33 +41,49 @@
     <!-- display of products -->
     <div class="row">
       <div class="product-container col-10 offset-1">
-        <!-- products sorting panel -->
-        <!-- <div class="row mt-1 mb-2">
+        <!-- select box for products sorting on left, bottom on mobile -->
+        <div class="row mt-1 mb-2">
           <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
             <div class="sort-select-wrapper w-50">
-              <select id="sort-selector" class="border border-{% if sortedBy != 'None_None' %}info{% else %}black{% endif %} border custom-select custom-select-sm rounded-0">
-                <option value="reset" {% if sortParam == 'none_option' %}selected{% endif %}>
+              <select id="selector-box" class="border-{% if sortParams != 'None_None' %}info{% else %}black{% endif %} border custom-select custom-select-sm rounded-0">
+                <option value="reset" {% if sortParams == 'None_None' %}selected{% endif %}>
                   Sort by...</option>
-                <option value="asce_category" {% if sortParam == 'asce_category' %}selected{% endif %}>
+                <option value="category_asce" {% if sortParams == 'category_asce' %}selected{% endif %}>
                   Category (A-Z)</option>
-                <option value="desc_category" {% if sortParam == 'desc_category' %}selected{% endif %}>
+                <option value="category_desc" {% if sortParams == 'category_desc' %}selected{% endif %}>
                   Category (Z-A)</option>
-                <option value="asce_name" {% if sortParam == 'asce_name' %}selected{% endif %}>
+                <option value="name_asce" {% if sortParams == 'name_asce' %}selected{% endif %}>
                   Name (A-Z)</option>
-                <option value="desc_name" {% if sortedBy == 'desc_name' %}selected{% endif %}>
+                <option value="name_desc" {% if sortParams == 'name_desc' %}selected{% endif %}>
                   Name (Z-A)</option>
-                <option value="asce_price" {% if sortParam == 'asce_price' %}selected{% endif %}>
+                <option value="price_asce" {% if sortParams == 'price_asce' %}selected{% endif %}>
                   Price (Low to High)</option>
-                <option value="desc_price" {% if sortParam == 'desc_price' %}selected{% endif %}>
+                <option value="price_desc" {% if sortParams == 'price_desc' %}selected{% endif %}>
                   Price (High to Low)</option>
-                <option value="asce_rating" {% if sortParam == 'asce_rating' %}selected{% endif %}>
+                <option value="rating_asce" {% if sortParams == 'rating_asce' %}selected{% endif %}>
                   Rating (Low to High)</option>
-                <option value="desc_rating" {% if sortParam == 'desc_rating' %}selected{% endif %}>
+                <option value="rating_desc" {% if sortParams == 'rating_desc' %}selected{% endif %}>
                   Rating (High to Low)</option>
               </select>
             </div>
-        </div> -->
+          </div>
+          <!-- search output info on left, top on mobile -->
+          <div class="col-12 col-md-6 order-md-first">
+            <p class="text-muted mt-3 text-center text-md-left">
+              {% if inputNames or sortParams or filterCats != 'None_None' %}
+                <span class="small">
+                  <a href="{% url 'aLLproducts' %}">ALL Products</a> |
+                </span>
+              {% endif %}
 
+              {{ products|length }} items
+
+              {% if inputNames %} 
+                found for <strong>"{{ inputNames }}"</strong>
+              {% endif %}
+            </p>
+          </div>
+        </div>
         <!-- screen display of all available products -->
         <div class="row">
           {% for product in products %}
@@ -144,4 +160,48 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- back to top arrow button -->
+<div class="btt-button shadow-sm rounded-0 border border-black">
+    <a class="btt-link d-flex h-100">
+      <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+    </a>	
+</div>
 {% endblock body_content%}
+
+
+{% comment %} jQuery embedded {% endcomment %}
+<!-- postload javascript -->
+<!-- block.super adds code, not replace exisitng -->
+
+{% block postload_js %}
+  {{ block.super }}
+  <!-- back To top button handler-->
+  <script type="text/javascript">
+		$('.btt-link').click(function(e) {
+			window.scrollTo(0,0)
+	  })
+	</script>
+    
+  <!-- selector box handler -->
+  <script type="text/javascript">
+    $('#selector-box').change(function() {
+      var selectorBox = $(this);
+      var optionValue = selectorBox.val();
+      var browserUrl = new URL(window.location);
+
+      if(optionValue != "reset"){
+        var parameter = optionValue.split("_")[0];
+        var pattern = optionValue.split("_")[1];
+        browserUrl.searchParams.set("parameter", parameter);
+        browserUrl.searchParams.set("pattern", pattern);
+        window.location.replace(browserUrl);
+      } else {
+        browserUrl.searchParams.delete("parameter");
+        browserUrl.searchParams.delete("pattern");
+        window.location.replace(browserUrl);
+      }
+    })
+  </script>
+{% endblock postload_js %}

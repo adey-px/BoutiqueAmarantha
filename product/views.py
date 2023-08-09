@@ -1,58 +1,65 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404, render
 from django.contrib import messages
 from django.db.models import Q
+from django.db.models.functions import Lower
 from .models import Category, Product
 
 
 # All products, search & sort queries
 def aLLproducts(request):
     products = Product.objects.all()
-    inputName = None
-    sortKeyword = None
+    inputNames = None
+    sortParameter = None
     sortPattern = None
-    filterCategory = None
+    categories = None
 
     if request.GET:
         # search products by names input in search form
         if "query" in request.GET:
-            inputName = request.GET["query"]
-            if not inputName:
+            inputNames = request.GET["query"]
+            if not inputNames:
                 messages.error(request, "You didn't enter any name")
                 return redirect(reverse("aLLproducts"))
-            if inputName:
-                queryText = Q(name__icontains=inputName) | Q(
-                    description__icontains=inputName
+            if inputNames:
+                queryText = Q(name__icontains=inputNames) | Q(
+                    description__icontains=inputNames
                 )
                 products = products.filter(queryText)
 
         # sort products by parameters thru navbar `PRODUCTS` link
+        # minus '-' for a reverse value, as in 'descending'
         if "parameter" in request.GET:
-            sortKey = request.GET["parameter"]
-            sortKeyword = sortKey
-            if sortKey == "name":
-                sortKey = "lower_name"
+            parameter = request.GET["parameter"]
+            sortParameter = parameter
+            if parameter == "name":
+                parameter = "lower_name"
                 products = products.annotate(lower_name=Lower("name"))
+            
+            # sort by category name in reverse order
+            if parameter == 'category':
+                parameter = 'category__name'
 
             if "pattern" in request.GET:
                 sortPattern = request.GET["pattern"]
-                if sortPattern == "descending":
-                    sortKey = f"-{sortKey}"
-            products = products.order_by(sortKey)
+                if sortPattern == "desc":
+                    parameter = f"-{parameter}"
+            products = products.order_by(parameter)
 
         # filter products by category thru navbar `other links`
         if "category" in request.GET:
-            filterCategory = request.GET["category"].split(",")
-            products = products.filter(category__name__in=filterCategory)
-            filterCategory = Category.objects.filter(name__in=filterCategory)
+            categories = request.GET["category"].split(",")
+            products = products.filter(category__name__in=categories)
+            categories = Category.objects.filter(name__in=categories)
 
-    sortParameter = f"{sortKeyword}_{sortPattern}"
+    # vars passed in select box for products sorting
+    sortParams = f"{sortParameter}_{sortPattern}"
 
     # export variables to template
     context = {
         "products": products,
-        "searchTxt": inputName,
-        "sortParam": sortParameter,
-        "filterCat": filterCategory,
+        "inputNames": inputNames,
+        "sortParams": sortParams,
+        "filterCats": categories,
     }
     return render(request, "product/aLLproducts.html", context)
 

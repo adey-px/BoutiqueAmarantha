@@ -3,17 +3,17 @@
     <!-- sort products using custom parameters -->
     <li class="nav-item dropdown">
       <a href="" class="nav-link dropdown-toggle logo-font font-weight-bold text-black mr-5" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Products
+        ALL Products
       </a>
       <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
         <a href="{% url 'aLLproducts' %}" class="dropdown-item">
-          All Products</a>
-        <a href="{% url 'aLLproducts' %}?parameter=category&pattern=ascending" class="dropdown-item">
-          By Category</a>
-        <a href="{% url 'aLLproducts' %}?parameter=rating&pattern=descending" class="dropdown-item">
-          By Rating</a>
-        <a href="{% url 'aLLproducts' %}?parameter=price&pattern=ascending" class="dropdown-item">
-          By Price</a>
+          Products in Stock</a>
+        <a href="{% url 'aLLproducts' %}?parameter=category&pattern=asce" class="dropdown-item">
+          Sort by Category</a>
+        <a href="{% url 'aLLproducts' %}?parameter=rating&pattern=desc" class="dropdown-item">
+          Sort by Rating</a>
+        <a href="{% url 'aLLproducts' %}?parameter=price&pattern=asce" class="dropdown-item">
+          Sort by Price</a>
       </div>
     </li>
 

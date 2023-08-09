@@ -1,3 +1,7 @@
+html {
+  height: 100%;
+}
+
 body {
   font-family: 'Lato';
 }
@@ -20,34 +24,7 @@ body {
   width: fit-content;
 }
 
-/* dropdown menu item on hover */
-@media all and (min-width: 992px) {
-  .nav-item .dropdown-menu {
-    margin-top: 0;
-  }
-
-  .nav-item .dropdown-menu {
-    display: none;
-  }
-
-  .nav-item:hover .dropdown-menu {
-    display: block;
-  }
-}
-
-/* dropdown menu item bg color  */
-.dropdown-item:hover {
-  color: #fff;
-  background: #212529;
-}
-
-/* buttons for filtered category */
-a.category-badge > span.badge:hover {
-  color: #fff !important;
-  background: #212529 !important;
-}
-
-/* landing page */
+/* landing home page */
 .background {
   position: fixed;
   background: url('./../img/background.jpg') center/cover;
@@ -117,4 +94,47 @@ a.category-badge > span.badge:hover {
   .header-container {
     padding-top: 116px;
   }
+}
+
+/* aLL products page */
+/* dropdown menu item on hover */
+@media all and (min-width: 992px) {
+  .nav-item .dropdown-menu {
+    margin-top: 0;
+  }
+
+  .nav-item .dropdown-menu {
+    display: none;
+  }
+
+  .nav-item:hover .dropdown-menu {
+    display: block;
+  }
+}
+
+/* dropdown menu item bg color  */
+.dropdown-item:hover {
+  color: #fff;
+  background: #212529;
+}
+
+/* buttons for filtered category */
+a.category-badge>span.badge:hover {
+  color: #fff !important;
+  background: #212529 !important;
+}
+
+/* back to top arrow */
+.btt-button {
+  height: 42px;
+  width: 42px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+.btt-link,
+.update-link,
+.remove-item {
+  cursor: pointer;
 }
